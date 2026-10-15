@@ -1,0 +1,340 @@
+/* verify.html specific styles — inherits variables from main.css */
+
+.verify-wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.verify-main {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 100px 24px 60px;
+}
+
+.verify-inner {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* ─── LOCKED STATE ──────────────────────────── */
+
+.lock-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.lock-card {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 52px 44px;
+}
+
+.lock-icon-wrap {
+  width: 68px; height: 68px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(0, 207, 255, 0.2);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin: 0 auto 26px;
+}
+
+.lock-card h1 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.lock-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 380px;
+  margin: 0 auto 32px;
+}
+
+.key-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin-bottom: 24px;
+}
+
+.key-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.key-input-wrap {
+  position: relative;
+}
+
+.key-input {
+  width: 100%;
+  padding: 13px 42px 13px 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
+  letter-spacing: 0.05em;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  text-align: center;
+}
+
+.key-input::placeholder { color: var(--text-muted); letter-spacing: 0; font-family: inherit; }
+
+.key-input:focus {
+  border-color: rgba(0, 207, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(0, 207, 255, 0.08);
+}
+
+.key-input.shake {
+  border-color: var(--red);
+  animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-7px); }
+  40% { transform: translateX(7px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.key-error {
+  font-size: 12.5px;
+  color: var(--red);
+  min-height: 18px;
+  text-align: center;
+}
+
+/* ─── UNLOCKED STATE ────────────────────────── */
+
+.verify-unlocked { display: none; }
+
+.verify-page-header {
+  margin-bottom: 24px;
+}
+
+.verify-page-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.verify-page-header p {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+}
+
+.session-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 10px 16px;
+  margin-bottom: 18px;
+  font-size: 12.5px;
+}
+
+.session-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+}
+
+.session-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: background 0.3s;
+}
+
+.session-dot.init { background: var(--text-muted); }
+.session-dot.active { background: var(--accent); animation: pulse 2s infinite; }
+.session-dot.pending { background: var(--yellow); animation: pulse 1.5s infinite; }
+.session-dot.approved { background: var(--green); animation: none; }
+.session-dot.rejected { background: var(--red); animation: none; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.session-right {
+  font-family: 'SF Mono', Consolas, monospace;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+/* ─── SDK CONTAINER ─────────────────────────── */
+
+#sumsub-websdk-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  min-height: 580px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.sdk-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* ─── RESULTS BOX ───────────────────────────── */
+
+.results-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.results-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+}
+
+.results-box-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.results-box-title::before {
+  content: '';
+  display: block;
+  width: 8px; height: 8px;
+  background: var(--border);
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.results-box-title.live::before { background: var(--green); animation: pulse 2s infinite; }
+
+.results-poll-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: 'SF Mono', Consolas, monospace;
+}
+
+.results-body {
+  padding: 18px 20px;
+  font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
+  font-size: 12px;
+  line-height: 2;
+  min-height: 140px;
+}
+
+.r-waiting {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  padding: 12px 0;
+}
+
+.spinner {
+  width: 13px; height: 13px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.r-row {
+  display: grid;
+  grid-template-columns: 168px 1fr;
+  gap: 8px;
+  padding: 1px 0;
+}
+
+.r-key { color: var(--text-muted); }
+.r-val { color: var(--text); }
+.r-val.green { color: var(--green); font-weight: 600; }
+.r-val.red { color: var(--red); font-weight: 600; }
+.r-val.yellow { color: var(--yellow); }
+.r-val.dim { color: var(--text-muted); }
+
+/* ─── VERIFY FOOTER ─────────────────────────── */
+
+.verify-footer-note {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.verify-footer-note a {
+  color: var(--text-secondary);
+  transition: color 0.15s;
+}
+
+.verify-footer-note a:hover { color: var(--text); }
+
+/* watermark on verify page — below Sumsub camera overlays */
+.vamp-mark {
+  z-index: 500 !important;
+}
+
+@media (max-width: 900px) {
+  .verify-main { padding: 90px 16px 40px; }
+  .verify-inner { max-width: 100%; }
+  #sumsub-websdk-container { min-height: 480px; }
+}
+
+@media (max-width: 600px) {
+  .lock-card { padding: 28px 18px; }
+  .lock-icon-wrap { width: 56px; height: 56px; font-size: 24px; }
+  .lock-card h1 { font-size: 18px; }
+  .lock-card p { font-size: 13px; }
+  .key-input { font-size: 13px; padding: 11px 14px; }
+  .session-bar { flex-direction: column; align-items: flex-start; gap: 6px; }
+  #sumsub-websdk-container { min-height: 420px; }
+  .results-body { font-size: 11px; }
+  .r-row { grid-template-columns: 130px 1fr; }
+  .verify-page-header h2 { font-size: 17px; }
+}

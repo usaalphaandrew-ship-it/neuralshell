@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Portal — NeuralShell</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.svg">
+  <meta name="theme-color" content="#080B14">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700;750&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/verify.css">
+</head>
+<body>
+
+
+<!-- ─── NAV ─────────────────────────────────── -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-mark">N</div>
+    NeuralShell
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="/#features">Platform</a></li>
+    <li><a href="/#how">How it works</a></li>
+    <li><a href="/#pricing">Pricing</a></li>
+    <li><a href="/verify.html" style="color: var(--accent);">Developer Portal</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <a href="/" class="btn btn-ghost">← Back to site</a>
+  </div>
+</nav>
+
+<!-- ─── MAIN ─────────────────────────────────── -->
+<div class="verify-wrap">
+  <main class="verify-main">
+    <div class="verify-inner">
+
+      <!-- ─── LOCKED ─── -->
+      <div id="lock-card" class="lock-wrap">
+        <div class="lock-card">
+          <div class="lock-icon-wrap">🔑</div>
+
+          <h1>Developer Portal Access</h1>
+          <p>
+            NeuralShell's developer sandbox requires identity verification as part of our
+            compliance policy. Enter your access key to begin.
+          </p>
+
+          <div class="key-hint">
+            🔒 Restricted access — compliance-gated environment
+          </div>
+
+          <form class="key-form" id="key-form" autocomplete="off">
+            <div class="key-input-wrap">
+              <input
+                type="password"
+                class="key-input"
+                id="key-input"
+                placeholder="Enter developer access key"
+                spellcheck="false"
+                autocomplete="new-password"
+              >
+            </div>
+            <div class="key-error" id="key-error"></div>
+            <button type="submit" class="btn btn-primary" id="submit-btn" style="width:100%;justify-content:center;padding:13px;">
+              Unlock
+            </button>
+          </form>
+        </div>
+
+        <p style="font-size:12.5px;color:var(--text-muted);margin-top:20px;text-align:center;">
+          Don't have a key? <a href="mailto:enterprise@neuralshell.host" style="color:var(--text-secondary);">Contact our team</a>
+        </p>
+      </div>
+
+      <!-- ─── UNLOCKED ─── -->
+      <div id="verify-unlocked" class="verify-unlocked">
+
+        <div class="verify-page-header">
+          <h2>Identity Verification</h2>
+          <p>Complete the verification steps below to activate your developer API access.</p>
+        </div>
+
+        <div class="session-bar">
+          <div class="session-left">
+            <div class="session-dot init" id="session-dot"></div>
+            <span id="session-status">Initializing...</span>
+          </div>
+          <div class="session-right">
+            ID: <span id="session-id">—</span>
+          </div>
+        </div>
+
+        <!-- Sumsub widget mounts here -->
+        <div id="sumsub-websdk-container">
+          <div class="sdk-loading">
+            <div class="spinner"></div>
+            <span>Loading verification module...</span>
+          </div>
+        </div>
+
+        <!-- Results box -->
+        <div class="results-box">
+          <div class="results-box-header">
+            <div class="results-box-title" id="results-box-title">Verification Result</div>
+            <div class="results-poll-label" id="results-poll-label">waiting for submission...</div>
+          </div>
+          <div class="results-body" id="results-body">
+            <div class="r-waiting">
+              <div class="spinner"></div>
+              Complete the steps above to see your verification result
+            </div>
+          </div>
+        </div>
+
+        <p class="verify-footer-note">
+          Verification powered by <a href="https://sumsub.com" target="_blank" rel="noopener">Sumsub</a> ·
+          Your data is processed in accordance with our <a href="#">Privacy Policy</a>
+        </p>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Sumsub WebSDK — CDN -->
+<script src="https://static.sumsub.com/idensic/static/sns-websdk-builder.js"></script>
+<script src="js/verify.js"></script>
+</body>
+</html>
